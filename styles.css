@@ -1,0 +1,86 @@
+/*-------------------------
+  Simple reset
+--------------------------*/
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box
+}
+
+/*-------------------------
+  General Styles
+--------------------------*/
+
+html{
+  background:url('https://cdn.hyperdev.com/feca3b9d-2ddb-43ff-98fa-57abfe77506b%2Fbg.png') repeat #e4e4e4;
+  overflow:hidden;
+}
+
+body{
+  font:14px/1.3 'Segoe UI',Arial, sans-serif;
+  color:#444;
+}
+
+a, a:visited {
+  outline:none;
+  color:#43819b;
+}
+
+a:hover{
+  text-decoration:none;
+}
+
+#cursors{
+  position:relative;
+}
+
+#cursors .cursor{
+  position:absolute;
+  background:url('https://cdn.hyperdev.com/feca3b9d-2ddb-43ff-98fa-57abfe77506b%2Fpointer.png') no-repeat -4px 0;
+}
+
+/*----------------------------
+  Color Selector
+-----------------------------*/
+
+#color-selector {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 160px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.marker {
+  width: 40px;
+  height: 40px;
+}
+
+.marker.selected {
+  border: 2px solid white;
+}
+
+/*----------------------------
+  Brush Selector
+-----------------------------*/
+
+#brush-selector {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: lightgray;
+  padding: 1%;
+}
+
+.brush-size {
+  border-radius: 50%;
+  padding: 1px 5px 2px 5px;
+}
+
+#eraser, #reset {
+  font-size: 1.5em;
+  padding: 1px 5px 2px 5px;
+}
