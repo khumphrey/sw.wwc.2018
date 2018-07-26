@@ -19,7 +19,9 @@ self.addEventListener('install', function(event) {
 })
 
 self.addEventListener('fetch', function(event) {
+  console.log('!!', navigator.onLine)
   if (navigator.onLine) {
+    console.log('fetching')
     event.respondWith(
       fetch(event.request)
         .then(function(response) {
@@ -42,6 +44,7 @@ self.addEventListener('fetch', function(event) {
     console.log('returning offline png')
     event.respondWith(caches.match('/sw.wwc.2018/offline.png'))
   } else {
+    console.log('getting from cache')
     event.respondWith(
       caches.match(event.request)
         .then(function(response) {
