@@ -51,7 +51,7 @@ self.addEventListener('fetch', function(event) {
         .catch(() => caches.match('/sw.wwc.2018'))
     )
   }
-}))
+})
 
 self.addEventListener('activate', function(event) {
   clients.claim()
