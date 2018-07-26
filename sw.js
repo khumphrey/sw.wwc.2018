@@ -4,7 +4,8 @@ var urlsToCache = [
   '/sw.wwc.2018/styles.css',
   '/sw.wwc.2018/offline.png',
   '/sw.wwc.2018/online.png',
-  '/sw.wwc.2018/index.js'
+  '/sw.wwc.2018/index.js',
+  'https://cdn.hyperdev.com/feca3b9d-2ddb-43ff-98fa-57abfe77506b%2Fbg.png'
 ]
 
 self.addEventListener('install', function(event) {
@@ -18,8 +19,6 @@ self.addEventListener('install', function(event) {
 })
 
 self.addEventListener('fetch', function(event) {
-  console.log('!!!', new URL(event.request.url).pathname)
-  console.log('!???!', new URL(event.request.url).origin)
   if (navigator.onLine) {
     event.respondWith(
       fetch(event.request)
