@@ -18,6 +18,8 @@ self.addEventListener('install', function(event) {
 })
 
 self.addEventListener('fetch', function(event) {
+  console.log('!!!', new URL(event.request.url).pathname)
+  console.log('!???!', new URL(event.request.url).origin)
   if (navigator.onLine) {
     event.respondWith(
       fetch(event.request)
