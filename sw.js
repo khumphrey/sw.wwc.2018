@@ -1,9 +1,9 @@
 
 var CACHE_NAME = 'sw.wwc.2018'
 var urlsToCache = [
-  '/',
-  '/styles.css',
-  '/index.js'
+  '/sw.wwc.2018/',
+  '/sw.wwc.2018/styles.css',
+  '/sw.wwc.2018/index.js'
 ]
 
 self.addEventListener('install', function(event) {
