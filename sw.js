@@ -1,4 +1,3 @@
-
 var CACHE_NAME = 'sw.wwc.2018'
 var urlsToCache = [
   '/sw.wwc.2018',
@@ -19,9 +18,7 @@ self.addEventListener('install', function(event) {
 })
 
 self.addEventListener('fetch', function(event) {
-  console.log('!!', navigator.onLine)
   if (navigator.onLine) {
-    console.log('fetching')
     event.respondWith(
       fetch(event.request)
         .then(function(response) {
@@ -41,10 +38,8 @@ self.addEventListener('fetch', function(event) {
         })
     )
   } else if (new URL(event.request.url).pathname === '/sw.wwc.2018/online.png') {
-    console.log('returning offline png')
     event.respondWith(caches.match('/sw.wwc.2018/offline.png'))
   } else {
-    console.log('getting from cache')
     event.respondWith(
       caches.match(event.request)
         .then(function(response) {
