@@ -21,7 +21,7 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   if (navigator.onLine) {
     event.respondWith(
-      fetch(fetchRequest)
+      fetch(event.request)
         .then(function(response) {
           // Response that we don't want to cache let's just send on
           if(!response || response.status !== 200 || response.type !== 'basic') { return response }
