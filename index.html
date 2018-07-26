@@ -11,6 +11,7 @@
 
 <body>  
   <canvas id="paper" width="2000" height="1500"></canvas>
+  <img src="/sw.wwc.2018/online.png">
   <div id="color-selector">
     <div class="marker selected" id="black"></div>
     <div class="marker" id="purple"></div>
@@ -41,7 +42,7 @@
         .then(function(registration) {
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
         })
-        .then(null,function(err) {
+        .catch(function(err) {
           console.log('ServiceWorker registration failed: ', err);
         });
     });

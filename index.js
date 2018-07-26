@@ -9,7 +9,7 @@ window.addEventListener('load', function(){
 
 
   const prev = {}
-  
+
   document.getElementById('eraser').addEventListener('click', () => erase = true )
   document.getElementById('reset').addEventListener('click', () => ctx.clearRect(0, 0, document.body.clientWidth, document.body.clientHeight))
  
@@ -74,5 +74,8 @@ window.addEventListener('load', function(){
       ctx.stroke()
     }
   }
+
+  document.addEventListener('offline', () => document.querySelector('img').src = '/sw.wwc.2018/offline.png')
+  document.addEventListener('online', () => document.querySelector('img').src = '/sw.wwc.2018/online.png')
 
 })

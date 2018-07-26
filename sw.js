@@ -1,8 +1,10 @@
 
 var CACHE_NAME = 'sw.wwc.2018'
 var urlsToCache = [
-  '/sw.wwc.2018/',
+  '/sw.wwc.2018',
   '/sw.wwc.2018/styles.css',
+  '/sw.wwc.2018/offline.png',
+  '/sw.wwc.2018/online.png',
   '/sw.wwc.2018/index.js'
 ]
 
@@ -17,31 +19,41 @@ self.addEventListener('install', function(event) {
 })
 
 self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        if (response) { return response }
+  if (navigator.onLine) {
+    event.respondWith(
+      fetch(fetchRequest)
+        .then(function(response) {
+          // Response that we don't want to cache let's just send on
+          if(!response || response.status !== 200 || response.type !== 'basic') { return response }
 
-        // Streams can only be consumed once. 
-        // Clone so that the cache and the browser can each consume one
-        const fetchRequest = event.request.clone()
+          // Streams can only be consumed once. 
+          // Clone so that the cache and the browser can each consume one
+          const responseToCache = response.clone()
 
-        return fetch(fetchRequest)
-          .then(function(response) {
-            // Response that we don't want to cache let's just send on
-            if(!response || response.status !== 200 || response.type !== 'basic') { return response }
+          caches.open(CACHE_NAME)
+            .then(function(cache) {
+              cache.put(event.request, responseToCache)
+            })
 
-            // Same as before - we need 2 streams
-            const responseToCache = response.clone()
+          return response
+        })
+    )
+  } else if (new URL(event.request.url).pathname === '/sw.wwc.2018/online.png') {
+    console.log('returning offline png')
+    event.respondWith(caches.match('/sw.wwc.2018/offline.png'))
+  } else {
+    event.respondWith(
+      caches.match(event.request)
+        .then(function(response) {
+          if (response) { return response }
+          else throw new Error('send me main!')
+        })
+        .catch(() => caches.match('/sw.wwc.2018'))
+    )
+  }
+}))
 
-            caches.open(CACHE_NAME)
-              .then(function(cache) {
-                cache.put(event.request, responseToCache)
-              })
-
-            return response
-          })
-      })
-  )
+self.addEventListener('activate', function(event) {
+  clients.claim()
 })
 
