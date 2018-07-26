@@ -1,8 +1,6 @@
 window.addEventListener('load', function(){
-  
-  const doc = document,
-    canvas = document.querySelector('#paper'),
-    ctx = canvas[0].getContext('2d')
+  const canvas = document.querySelector('#paper'),
+    ctx = canvas.getContext('2d')
   
   let erase = false
   let brushSize = 5
@@ -39,16 +37,17 @@ window.addEventListener('load', function(){
     })
   })
   
-  canvas.on('mousedown', (e) => {
+  canvas.addEventListener('mousedown', (e) => {
     e.preventDefault()
     drawing = true
     prev.x = e.pageX
     prev.y = e.pageY
   })
   
-  doc.bind('mouseup mouseleave', () => { drawing = false })
+  document.addEventListener('mouseup', () => { drawing = false })
+  document.addEventListener('mouseleave', () => { drawing = false })
 
-  doc.on('mousemove',function(e){
+  document.addEventListener('mousemove',function(e){
     if(drawing){
       
       drawLine(prev.x, prev.y, e.pageX, e.pageY, color, brushSize)

@@ -31,15 +31,6 @@ a:hover{
   text-decoration:none;
 }
 
-#cursors{
-  position:relative;
-}
-
-#cursors .cursor{
-  position:absolute;
-  background:url('https://cdn.hyperdev.com/feca3b9d-2ddb-43ff-98fa-57abfe77506b%2Fpointer.png') no-repeat -4px 0;
-}
-
 /*----------------------------
   Color Selector
 -----------------------------*/
